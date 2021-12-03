@@ -4,34 +4,51 @@ import { AboutComponent } from './about/about.component';
 import { AlbumComponent } from './album/album.component';
 import { ArtistDiscographyComponent } from './artist-discography/artist-discography.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { LoginComponent } from './login/login.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RegisterComponent } from './register/register.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { GuardAuthService } from './guard-auth.service';
 
 const routes: Routes = [
   {
     path: 'newReleases',
-    component: NewReleasesComponent
+    component: NewReleasesComponent,
+    canActivate: [GuardAuthService]
   },
   {
     path: 'artist/:id',
-    component: ArtistDiscographyComponent
+    component: ArtistDiscographyComponent,
+    canActivate: [GuardAuthService]
   },
   {
     path: 'album/:id',
-    component: AlbumComponent
+    component: AlbumComponent,
+    canActivate: [GuardAuthService]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    canActivate: [GuardAuthService]
   },
   {
     path: 'search',
-    component: SearchResultsComponent
+    component: SearchResultsComponent,
+    canActivate: [GuardAuthService]
   },
   {
     path: 'favourites',
-    component: FavouritesComponent
+    component: FavouritesComponent,
+    canActivate: [GuardAuthService]
   },
   {
     path: '',

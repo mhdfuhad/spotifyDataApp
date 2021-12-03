@@ -11,12 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,9 +27,13 @@ import { ArtistDiscographyComponent } from './artist-discography/artist-discogra
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MusicDataService } from './music-data.service';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { InterceptTokenService } from './intercept-token.service';
+
 
 @NgModule({
-  declarations: [AppComponent, AboutComponent, NotFoundComponent, NewReleasesComponent, AlbumComponent, ArtistDiscographyComponent, FavouritesComponent, SearchResultsComponent],
+  declarations: [AppComponent, AboutComponent, NotFoundComponent, NewReleasesComponent, AlbumComponent, ArtistDiscographyComponent, FavouritesComponent, SearchResultsComponent, RegisterComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,7 +54,12 @@ import { MusicDataService } from './music-data.service';
     FormsModule,
     MatSnackBarModule
   ],
-  providers: [MusicDataService],
+  providers: [MusicDataService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptTokenService,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
