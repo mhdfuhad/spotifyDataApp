@@ -31,9 +31,19 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { InterceptTokenService } from './intercept-token.service';
 
-
 @NgModule({
-  declarations: [AppComponent, AboutComponent, NotFoundComponent, NewReleasesComponent, AlbumComponent, ArtistDiscographyComponent, FavouritesComponent, SearchResultsComponent, RegisterComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    NotFoundComponent,
+    NewReleasesComponent,
+    AlbumComponent,
+    ArtistDiscographyComponent,
+    FavouritesComponent,
+    SearchResultsComponent,
+    RegisterComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,13 +62,15 @@ import { InterceptTokenService } from './intercept-token.service';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
-  providers: [MusicDataService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: InterceptTokenService,
-    multi: true
-  }
+  providers: [
+    MusicDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptTokenService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
